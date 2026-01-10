@@ -1,25 +1,26 @@
 class DotAgents < Formula
   desc "Unified config layer for AI coding agents"
   homepage "https://github.com/dot-agents/dot-agents"
-  url "https://github.com/dot-agents/dot-agents/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "fd66f58a866cc0bbfb387fc6df9c643890c4bc7261d40e1bf30d0eacfc8e3843"
+  url "https://github.com/dot-agents/dot-agents/releases/download/v0.1.1/dot-agents-v0.1.1.tar.gz"
+  sha256 "b560ee86eaf8485b980e28a9c120a78e69683c780fc48d719eea65c41898f213"
   license "MIT"
+  version "0.1.1"
 
   def install
-    # Install the main binary
     bin.install "src/bin/dot-agents"
-
-    # Install library files
     libexec.install "src/lib"
     libexec.install "src/share"
+    libexec.install "VERSION"
 
-    # Rewrite paths in the main script to use Homebrew locations
+    # Rewrite paths for Homebrew installation
     inreplace bin/"dot-agents" do |s|
-      s.gsub! 'SRC_DIR="$(dirname "$BIN_DIR")"', "SRC_DIR=\"#{libexec}\""
+      s.gsub! 'SRC_DIR="."', "SRC_DIR=\"#{libexec}\""
+      s.gsub! 'LIB_DIR="/lib"', "LIB_DIR=\"#{libexec}/lib\""
+      s.gsub! 'SHARE_DIR="/share"', "SHARE_DIR=\"#{libexec}/share\""
     end
   end
 
   test do
-    assert_match "dot-agents #{version}", shell_output("#{bin}/dot-agents --version")
+    assert_match "0.1.1", shell_output("#{bin}/dot-agents --version")
   end
 end
