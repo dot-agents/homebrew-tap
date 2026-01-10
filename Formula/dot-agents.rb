@@ -14,9 +14,9 @@ class DotAgents < Formula
 
     # Rewrite paths for Homebrew installation
     inreplace bin/"dot-agents" do |s|
-      s.gsub! 'SRC_DIR="."', "SRC_DIR=\"#{libexec}\""
-      s.gsub! 'LIB_DIR="/lib"', "LIB_DIR=\"#{libexec}/lib\""
-      s.gsub! 'SHARE_DIR="/share"', "SHARE_DIR=\"#{libexec}/share\""
+      s.gsub! 'SRC_DIR="$(dirname "$BIN_DIR")"', "SRC_DIR=\"#{libexec}\""
+      s.gsub! 'LIB_DIR="$SRC_DIR/lib"', "LIB_DIR=\"#{libexec}/lib\""
+      s.gsub! 'SHARE_DIR="$SRC_DIR/share"', "SHARE_DIR=\"#{libexec}/share\""
     end
   end
 
