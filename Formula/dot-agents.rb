@@ -1,10 +1,10 @@
 class DotAgents < Formula
   desc "Unified config layer for AI coding agents"
   homepage "https://github.com/dot-agents/dot-agents"
-  url "https://github.com/dot-agents/dot-agents/releases/download/v0.1.8/dot-agents-v0.1.8.tar.gz"
-  sha256 "1550db26741c0de41b521dbf727f8de494923ef930b4c1b07539a1f8e5672c3c"
+  url "https://github.com/dot-agents/dot-agents/releases/download/v0.1.9/dot-agents-v0.1.9.tar.gz"
+  sha256 "5e8a17991b9aa0e51c1def292515122160ccfa00fd522652300f68c0a9860648"
   license "MIT"
-  version "0.1.8"
+  version "0.1.9"
 
   def install
     bin.install "src/bin/dot-agents"
@@ -21,6 +21,6 @@ class DotAgents < Formula
   end
 
   test do
-    assert_match "0.1.8", shell_output("#{bin}/dot-agents --version")
+    assert_match "0.1.9", shell_output("#{bin}/dot-agents --version")
   end
 end
